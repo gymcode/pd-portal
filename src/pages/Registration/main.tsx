@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import imageSvg from "../../assets/img.svg"
 
 const PersonalInfoPage = React.lazy(() => import("./PersonalInfo"))
 const LicenseInfoPage = React.lazy(() => import("./LicenseInfo"))
@@ -8,6 +9,7 @@ const LicenseInfoPage = React.lazy(() => import("./LicenseInfo"))
 const RegistrationPage = () => {
     const [firstName, setFirstName] = React.useState("First name")
     const [lastName, setLastName] = React.useState("Last name")
+    const [email, setEmail] = React.useState("someone@gmail.com")
     return (
         <div>
             {/* desktop view  */}
@@ -24,7 +26,9 @@ const RegistrationPage = () => {
                 <div className="h-full h-[20vh] px-80 ml-10 bg-cover bg-center py-6">
                     <div className='flex'>
                         <div>
-                            <div className='h-24'>image</div>
+                            <div className='h-24 flex justify-center items-center'>
+                                <img src={imageSvg} color="red" className="h-[70%] text-gray-300" alt="" />
+                            </div>
                             <div>
                                 <div className='h-8 w-36 flex justify-center items-center font-semibold bg-[#695DEF] text-xs rounded-xl text-white'>Add/change photo</div>
                             </div>
@@ -32,7 +36,8 @@ const RegistrationPage = () => {
                         <div>
                             <div className='px-5'>
                                 <div className='text-3xl font-bold'>{firstName} {lastName}</div>
-                                <div className='text-sm'>Courier account</div>
+                                <div className='text-xs pt-1 text-gray-500'>{email}</div>
+                                <div className='text-xs pt-1 text-gray-500'>Courier account</div>
                             </div>
                         </div>
                     </div>
@@ -62,7 +67,12 @@ const RegistrationPage = () => {
                 <main className='bg-[#F7F9FC] h-[55vh] px-80 mx-10 grid grid-cols-3 pt-12'>
                     <div className='col-span-2'>
                         <Routes>
-                            <Route path='/personal' element={<PersonalInfoPage setFristName={setFirstName} setLastName={setLastName}/>} />
+                            <Route path='/personal' element={
+                            <PersonalInfoPage 
+                                    setFristName={setFirstName} 
+                                    setLastName={setLastName}
+                                    setEmail={setEmail}
+                                    />}/>
                             <Route path='/license' element={<LicenseInfoPage />} />
                         </Routes>
                     </div>

@@ -5,10 +5,11 @@ import DatePicker, { ReactDatePickerProps } from "react-datepicker"
 type Props = {
     setFristName: React.Dispatch<React.SetStateAction<string>>
     setLastName: React.Dispatch<React.SetStateAction<string>>
+    setEmail: React.Dispatch<React.SetStateAction<string>>
 }
 
 
-const PersonalInfoPage = ({setFristName, setLastName}: Props) => {
+const PersonalInfoPage = ({setFristName, setLastName, setEmail}: Props) => {
     const [date, setDate] = React.useState(new Date())
     return (
         <>
@@ -26,7 +27,7 @@ const PersonalInfoPage = ({setFristName, setLastName}: Props) => {
                 <div className="grid grid-cols-2 mb-3">
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Email</label>
-                        <input type="text" className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="someone@gmail.com" />
+                        <input type="text" onChange={(e)=> setEmail(e.target.value)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="someone@gmail.com" />
                     </div>
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Mobile Phone</label>
