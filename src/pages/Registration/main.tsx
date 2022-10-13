@@ -10,6 +10,7 @@ const RegistrationPage = () => {
     const [firstName, setFirstName] = React.useState("First name")
     const [lastName, setLastName] = React.useState("Last name")
     const [email, setEmail] = React.useState("someone@gmail.com")
+    const [isPersonalCompleted, setIsPersonalCompleted] = React.useState<boolean>(false)
     return (
         <div>
             {/* desktop view  */}
@@ -52,29 +53,33 @@ const RegistrationPage = () => {
                     >
                         <div className='cursor-pointer'>Personal</div>
                     </NavLink>
-
-                    <NavLink to={"/register/license"}
-                        style={({ isActive }) => {
-                            return {
-                                color: isActive ? "red" : "black",
-                            };
-                        }}
-                    >
-                        <div className='ml-28 cursor-pointer'>Driver's license</div>
-                    </NavLink>
+                    {
+                        isPersonalCompleted ?
+                            (<NavLink to={"/register/license"}
+                                style={({ isActive }) => {
+                                    return {
+                                        color: isActive ? "red" : "black",
+                                    };
+                                }}
+                            >
+                                <div className='ml-28 cursor-pointer'>Driver's license</div>
+                            </NavLink>) : <div className='ml-28 text-gray-400 cursor-pointer'>Driver's license</div>
+                    }
 
                 </div>
                 <main className='bg-[#F7F9FC] h-[55vh] px-80 mx-10 grid grid-cols-3 pt-12'>
                     <div className='col-span-2'>
-                        <Routes>
-                            <Route path='/personal' element={
-                            <PersonalInfoPage 
-                                    setFristName={setFirstName} 
-                                    setLastName={setLastName}
-                                    setEmail={setEmail}
-                                    />}/>
-                            <Route path='/license' element={<LicenseInfoPage />} />
-                        </Routes>
+                        <React.Suspense>
+                            <Routes>
+                                <Route path='/personal' element={
+                                    <PersonalInfoPage
+                                        setFristName={setFirstName}
+                                        setLastName={setLastName}
+                                        setEmail={setEmail}
+                                    />} />
+                                <Route path='/license' element={<LicenseInfoPage />} />
+                            </Routes>
+                        </React.Suspense>
                     </div>
                     <div className=''>
                         <div className='bg-[#D3E1FC] text-[#0F2A60] w-64 h-28 p-4 text-sm'>

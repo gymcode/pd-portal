@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from "react-router-dom"
-import DatePicker, { ReactDatePickerProps } from "react-datepicker"
+import { FormContext } from "../../../App"
 
 type Props = {
     setFristName: React.Dispatch<React.SetStateAction<string>>
@@ -9,29 +9,49 @@ type Props = {
 }
 
 
-const PersonalInfoPage = ({setFristName, setLastName, setEmail}: Props) => {
-    const [date, setDate] = React.useState(new Date())
+const PersonalInfoPage = ({ setFristName, setLastName, setEmail }: Props) => {
+
+    const { formData, setFormData } = useContext(FormContext)
+
+    function firstName(e: React.ChangeEvent<HTMLInputElement>){
+        const firstName = e.target.value
+        setFristName(firstName)
+        setFormData({...formData, firstName: firstName})
+    }
+
+    function lastName(e: React.ChangeEvent<HTMLInputElement>){
+        const lastName = e.target.value
+        setLastName(lastName)
+        setFormData({...formData, lastName: lastName})
+    }
+
+    function email(e: React.ChangeEvent<HTMLInputElement>){
+        const email = e.target.value
+        setEmail(email)
+        setFormData({...formData, email: email})
+    }
+
     return (
         <>
             <form action="">
                 <div className="grid grid-cols-2 mb-3">
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* First Name</label>
-                        <input type="text" onChange={(e)=> setFristName(e.target.value)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="Kenneth" />
+                        <input type="text" onChange={(e) => firstName(e)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="Kenneth" />
                     </div>
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Last Name</label>
-                        <input type="text" onChange={(e)=> setLastName(e.target.value)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="Lartey" />
+                        <input type="text" onChange={(e) => lastName(e)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="Lartey" />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 mb-3">
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Email</label>
-                        <input type="text" onChange={(e)=> setEmail(e.target.value)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="someone@gmail.com" />
+                        <input type="text" onChange={(e) => email(e)} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="someone@gmail.com" />
                     </div>
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Mobile Phone</label>
-                        <input type="text" className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="+233268211334" />
+                        <input type="text" onChange={(e) => { setFormData({ ...formData, msisdn: e.target.value})}} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="+233268211334" />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 mb-3">
