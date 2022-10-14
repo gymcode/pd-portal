@@ -57,7 +57,7 @@ const PersonalInfoPage = ({ setFristName, setLastName, setEmail }: Props) => {
                 <div className="grid grid-cols-2 mb-3">
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Actual Address</label>
-                        <input type="text" className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="Haatso" />
+                        <input type="text" onChange={(e) => { setFormData({ ...formData, address: e.target.value})}} className="rounded-lg h-10 px-4 text-sm outline-none" placeholder="Haatso" />
                     </div>
                     <div className="flex w-[88%]">
                         <div className="w-[80%]">
@@ -67,17 +67,17 @@ const PersonalInfoPage = ({ setFristName, setLastName, setEmail }: Props) => {
                         </div>
                         <div className="mx-2 w-[50%]">
                             <label htmlFor="" className="text-gray-600 text-sm mb-4">* Gender</label>
-                            <select name="" id="" className="rounded-lg h-10 w-[100%] bg-white outline-none">
-                                <option value="MALE">male</option>
-                                <option value="FEMALE">female</option>
+                            <select onChange={(e)=>{ setFormData({ ...formData, gender: e.target.value})}} className="rounded-lg h-10 w-[100%] bg-white outline-none">
+                                <option value="male">male</option>
+                                <option value="femail">female</option>
                             </select>
                         </div>
                         <div className="w-[60%]">
                             <label htmlFor="" className="text-gray-600 text-sm mb-4">* Marital Status</label>
-                            <select name="" id="" className="rounded-lg h-10 w-[100%] bg-white outline-none">
-                                <option value="SINGLE">single</option>
-                                <option value="MARRIED">married</option>
-                                <option value="SERCHING">searching</option>
+                            <select onChange={(e)=>{ setFormData({ ...formData, maritalStatus: e.target.value})}} className="rounded-lg h-10 w-[100%] bg-white outline-none">
+                                <option value="single">single</option>
+                                <option value="married">married</option>
+                                <option value="s">searching</option>
                             </select>
                         </div>
                     </div>
@@ -85,11 +85,11 @@ const PersonalInfoPage = ({ setFristName, setLastName, setEmail }: Props) => {
                 <div className="grid grid-cols-2 mb-3">
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Emmergency contact name</label>
-                        <input type="text" className="rounded-lg h-10 text-sm px-4 outline-none" placeholder="Stacy" />
+                        <input type="text" onChange={(e) => { setFormData({ ...formData, emergencyContactName: e.target.value})}} className="rounded-lg h-10 text-sm px-4 outline-none" placeholder="Stacy" />
                     </div>
                     <div className="flex flex-col w-[88%]">
                         <label htmlFor="" className="text-gray-600 text-sm mb-4">* Emergency contact number</label>
-                        <input type="text" className="rounded-lg h-10 text-sm px-4 outline-none" placeholder="+233268211333" />
+                        <input type="text" onChange={(e) => { setFormData({ ...formData, emergencyContactNumber: e.target.value})}} className="rounded-lg h-10 text-sm px-4 outline-none" placeholder="+233268211333" />
                     </div>
                 </div>
                 <div className="flex justify-end w-[94%] mt-5">

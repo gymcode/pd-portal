@@ -20,21 +20,17 @@ function App() {
   console.log(formData)
   return (
     <Suspense fallback={"again"}>
-
       <FormContext.Provider value={value}>
         <Routes>
           {
             RouteList.map(data => (
               <>
-
                 <Route path={data.path} element={data.element} />
-
               </>
             ))
           }
         </Routes>
       </FormContext.Provider>
-
     </Suspense >
   );
 }
